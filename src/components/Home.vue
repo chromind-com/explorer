@@ -1,8 +1,6 @@
 <!-- src/components/Home.vue -->
 <template>
   <div class="home">
-    <h1>Welcome to Chromia Terminal Explorer</h1>
-
     <div class="search-bar">
       <input
         type="text"

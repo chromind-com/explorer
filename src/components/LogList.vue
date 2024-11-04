@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       logs: [],
-      message: 'Chromia Terminal Explorer',
+      message: 'Chromind  Explorer',
       isLoading: true,
       error: null,
     };

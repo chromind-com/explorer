@@ -1,6 +1,6 @@
 <template>
   <header class="app-header">
-    <h1><a href="/">Chromia LLM Explorer</a></h1>
+    <h1><a href="/">ChromindScan Explorer</a></h1>
   </header>
   <main>
     <router-view></router-view>
