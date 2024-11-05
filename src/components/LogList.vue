@@ -46,7 +46,7 @@
               {{ message.role === 'user' ? '👱‍♂️' : '🤖' }}
             </span>
             <div :class="[
-              'px-4 py-2 rounded-xl max-w-[80%]',
+              'px-4 py-2 rounded-xl max-w-[80%] whitespace-pre-wrap break-words',
               message.role === 'user' ? 'bg-[#6a5acd]' : 'bg-[#4b3f68]'
             ]">
               {{ message.content }}
@@ -56,7 +56,7 @@
           <!-- Assistant Reply -->
           <div class="flex items-start gap-3">
             <span class="text-2xl">🤖</span>
-            <div class="bg-[#4b3f68] px-4 py-2 rounded-xl max-w-[80%]">
+            <div class="bg-[#4b3f68] px-4 py-2 rounded-xl max-w-[80%] whitespace-pre-wrap break-words">
               {{ log.assistant_reply }}
             </div>
           </div>

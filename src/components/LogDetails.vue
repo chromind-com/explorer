@@ -87,7 +87,7 @@ export default {
           title: "User Question",
           component: "div",
           props: {
-            class: "bg-[#6a5acd] px-4 py-2 rounded-xl",
+            class: "bg-[#6a5acd] px-4 py-2 rounded-xl whitespace-pre-wrap break-words",
             text: this.log.user_question,
           },
         },
@@ -95,7 +95,7 @@ export default {
           title: "Assistant Reply",
           component: "div",
           props: {
-            class: "bg-[#4b3f68] px-4 py-2 rounded-xl",
+            class: "bg-[#4b3f68] px-4 py-2 rounded-xl whitespace-pre-wrap break-words",
             text: this.log.assistant_reply,
           },
         },
