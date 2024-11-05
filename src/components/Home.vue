@@ -8,7 +8,7 @@
         Explore Chromia Blockchain
       </h2>
       <p class="text-xl mb-10 max-w-2xl mx-auto text-gray-300">
-        Search and analyze blockchain data with ease using ChromindScan Explorer
+        Search and analyze AI data with ease using ChromindScan Explorer (powered by Chromia)
       </p>
 
       <!-- Search Bar -->
