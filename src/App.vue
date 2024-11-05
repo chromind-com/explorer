@@ -24,6 +24,10 @@
               class="text-gray-300 hover:text-custom-purple transition-colors">
               Github
             </a>
+            <a href="https://explorer.chromia.com/mainnet/blockchain/E55CAEA35948B8FA13F9E19B201D5A93BAA664AD57E6CE52AE9022B5024B8083"
+              target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-custom-purple transition-colors">
+              Chromia Explorer
+            </a>
           </nav>
         </header>
 

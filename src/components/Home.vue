@@ -1,7 +1,6 @@
 <!-- src/components/Home.vue -->
 <template>
   <div class="flex flex-col items-center min-h-screen">
-    <!-- Hero Section -->
     <section class="container mx-auto px-4 py-12 text-center">
       <h2
         class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-custom-purple via-[#ca67b7] to-[#fdb3c2] text-transparent bg-clip-text">
@@ -22,6 +21,12 @@
             Search
           </button>
         </div>
+      </div>
+
+      <!-- Number of Logs Display -->
+      <div class="w-full max-w-2xl mx-auto bg-[#3a3750]/50 rounded-xl p-8 backdrop-blur-sm mb-8">
+        <h2 class="text-2xl font-bold mb-6 text-custom-purple">Total Inferences</h2>
+        <p class="text-xl text-gray-300">{{ noOfLogs }}</p>
       </div>
 
       <!-- Top Addresses Section -->
@@ -103,10 +108,14 @@ export default {
     Zap,
     Search,
     Activity,
-    Clock
+    Clock,
+    CheckCircle,
+    Code,
+    Eye
   },
   data() {
     return {
+      noOfLogs: 0,
       searchQuery: "",
       topAddresses: [],
       features: [
@@ -153,6 +162,19 @@ export default {
   },
   methods: {
     uint8ArrayToHex,
+    async fetchNoOfLogs() {
+      const client = await getClient();
+      const [error, result] = await catchError(
+        client.query({
+          name: "get_logs_count",
+        })
+      );
+      if (error) {
+        console.error(error);
+        return;
+      }
+      this.noOfLogs = result;
+    },
     async fetchTopAddresses() {
       const client = await getClient();
       const [error, result] = await catchError(
@@ -188,6 +210,7 @@ export default {
   },
   mounted() {
     this.fetchTopAddresses();
+    this.fetchNoOfLogs();
   },
 };
 </script>
