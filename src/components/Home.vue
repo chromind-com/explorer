@@ -1,39 +1,154 @@
 <!-- src/components/Home.vue -->
 <template>
-  <div class="home">
-    <div class="search-bar">
-      <input
-        type="text"
-        v-model="searchQuery"
-        @keyup.enter="performSearch"
-        placeholder="Search logs by UUID or address..."
-      />
-      <button @click="performSearch">Search</button>
-    </div>
+  <div class="flex flex-col items-center min-h-screen">
+    <!-- Hero Section -->
+    <section class="container mx-auto px-4 py-12 text-center">
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-custom-purple via-[#ca67b7] to-[#fdb3c2] text-transparent bg-clip-text">
+        Explore Chromia Blockchain
+      </h2>
+      <p class="text-xl mb-10 max-w-2xl mx-auto text-gray-300">
+        Search and analyze blockchain data with ease using ChromindScan Explorer
+      </p>
 
-    <div class="sample-addresses">
-      <h2>Top Addresses</h2>
-      <ul>
-        <li v-for="{address} in topAddresses" :key="address">
-          <router-link :to="`/address/${uint8ArrayToHex(address)}`">
-            {{ uint8ArrayToHex(address) }}
-          </router-link>
-        </li>
-      </ul>
-    </div>
+      <!-- Search Bar -->
+      <div class="w-full max-w-2xl mx-auto mb-16">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input type="text" v-model="searchQuery" @keyup.enter="performSearch"
+            placeholder="Search logs by UUID or address..."
+            class="flex-1 px-6 py-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none bg-[#3a3750] border border-neutral-600 focus:border-custom-purple focus:outline-none text-white placeholder-gray-400" />
+          <button @click="performSearch"
+            class="px-8 py-3 bg-gradient-to-r from-custom-purple to-[#ca67b7] text-white rounded-lg sm:rounded-l-none sm:rounded-r-lg hover:opacity-90 transition-opacity">
+            Search
+          </button>
+        </div>
+      </div>
+
+      <!-- Top Addresses Section -->
+      <div class="w-full max-w-2xl mx-auto bg-[#3a3750]/50 rounded-xl p-8 backdrop-blur-sm">
+        <h2 class="text-2xl font-bold mb-6 text-custom-purple">Top Addresses</h2>
+        <div class="grid gap-4">
+          <div v-for="{ address } in topAddresses" :key="address"
+            class="p-4 bg-[#2c2734] rounded-lg hover:bg-[#3a3750] transition-colors">
+            <router-link :to="`/address/${uint8ArrayToHex(address)}`"
+              class="text-[#ca67b7] hover:text-[#fdb3c2] transition-colors break-all">
+              {{ uint8ArrayToHex(address) }}
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container mx-auto px-4 py-12">
+      <h2
+        class="text-3xl font-bold mb-12 text-center bg-gradient-to-r from-custom-purple to-[#ca67b7] text-transparent bg-clip-text">
+        Explore Our Features
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div v-for="(feature, index) in features" :key="index"
+          class="bg-[#3a3750]/30 backdrop-blur-sm rounded-xl p-6 hover:shadow-xl transition-all hover:-translate-y-1">
+          <component :is="feature.icon" class="w-12 h-12 mb-4" :class="feature.iconColor" />
+          <h3 class="text-xl font-semibold mb-2 text-custom-purple">{{ feature.title }}</h3>
+          <p class="text-gray-300">{{ feature.description }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="container mx-auto px-4 py-16">
+      <h2
+        class="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-custom-purple to-[#ca67b7] text-transparent bg-clip-text">
+        Trusted Partners & Integrations
+      </h2>
+      <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+        Working together with industry leaders to build a more transparent blockchain ecosystem
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center justify-items-center">
+        <div v-for="(partner, index) in partners" :key="index"
+          class="group relative w-full max-w-[300px] p-8 bg-[#3a3750]/30 backdrop-blur-sm rounded-xl hover:bg-[#3a3750]/50 transition-all duration-300">
+          <div class="flex flex-col items-center">
+            <img :src="partner.logo" :alt="partner.name"
+              class="w-full h-32 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" />
+            <span class="mt-6 text-lg font-semibold text-gray-400 group-hover:text-custom-purple transition-colors">
+              {{ partner.name }}
+            </span>
+          </div>
+          <!-- Hover Card with More Info -->
+          <div
+            class="absolute inset-0 p-6 bg-[#3a3750]/95 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center">
+            <p class="text-base text-center text-gray-300">{{ partner.description }}</p>
+            <a :href="partner.link" target="_blank" rel="noopener noreferrer"
+              class="mt-4 px-6 py-2 bg-custom-purple/20 rounded-full text-custom-purple hover:bg-custom-purple/30 transition-all duration-300">
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
+import { Database, Shield, Zap, Search, Activity, Clock, CheckCircle, Code, Eye } from 'lucide-vue-next'
 import { getClient } from "../chromia";
 import { catchError, uint8ArrayToHex } from "../util";
 
 export default {
   name: "Home",
+  components: {
+    Database,
+    Shield,
+    Zap,
+    Search,
+    Activity,
+    Clock
+  },
   data() {
     return {
       searchQuery: "",
       topAddresses: [],
+      features: [
+        {
+          icon: CheckCircle,
+          iconColor: 'text-custom-purple',
+          title: "Verifiable AI Interactions",
+          description: "All AI interactions are logged on-chain, providing real-time, publicly verifiable records."
+        },
+        {
+          icon: Code,
+          iconColor: 'text-[#ca67b7]',
+          title: "Easy Integration",
+          description: "Integrate Chromind with just a few lines of code."
+        },
+        {
+          icon: Eye,
+          iconColor: 'text-[#fdb3c2]',
+          title: "Transparency in AI Usage",
+          description: "Ensure transparency by recording AI activities on Chromia's blockchain."
+        },
+        {
+          icon: Search,
+          iconColor: 'text-custom-purple',
+          title: "Verify AI Claims",
+          description: "Confirm if projects claiming AI usage actually utilize AI technology."
+        },
+        {
+          icon: Activity,
+          iconColor: 'text-[#ca67b7]',
+          title: "Real-Time Monitoring",
+          description: "Monitor AI interactions as they happen."
+        }
+      ],
+      partners: [
+        {
+          name: "Neetoshi",
+          logo: "/partners/neetoshi.jpg",
+          description: "NEEToshi, an AI agent powered by xAI Grok-Beta, Chromia, and Elfa AI, is conducting the first experiment of ChromindScan by simulating using @xai’s model and promoting $CHR.",
+          link: "https://twitter.com/AlphaOnChain"
+        },
+      ]
     };
   },
   methods: {
@@ -76,137 +191,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  color: #f0f0f0;
-  background-color: #2c2734;
-  height: 100vh;
-  box-sizing: border-box;
-}
-
-h1 {
-  color: #ca67b7;
-  margin-bottom: 30px;
-}
-
-.search-bar {
-  display: flex;
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 30px;
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  font-size: 1em;
-  background-color: #3a3750;
-  color: #f0f0f0;
-}
-
-.search-bar input::placeholder {
-  color: #b0a9c6;
-}
-
-.search-bar button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #ca67b7;
-  color: #f0f0f0;
-  font-size: 1em;
-  cursor: pointer;
-  border-radius: 0 4px 4px 0;
-  transition: background-color 0.3s ease;
-}
-
-.search-bar button:hover {
-  background-color: #b35ca3;
-}
-
-.sample-addresses {
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 40px;
-}
-
-.sample-addresses h2 {
-  margin-bottom: 15px;
-  color: #cb8fe9;
-}
-
-.sample-addresses ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sample-addresses li {
-  margin-bottom: 10px;
-}
-
-.sample-addresses a {
-  color: #ca67b7;
-  text-decoration: none;
-  font-weight: bold;
-  word-break: break-all;
-  transition: color 0.3s ease;
-}
-
-.sample-addresses a:hover {
-  color: #fdb3c2;
-}
-
-.navigation {
-  width: 100%;
-  max-width: 500px;
-}
-
-.navigation h2 {
-  margin-bottom: 15px;
-  color: #cb8fe9;
-}
-
-.navigation ul {
-  list-style: none;
-  padding: 0;
-}
-
-.navigation li {
-  margin-bottom: 10px;
-}
-
-.navigation a {
-  color: #ca67b7;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.navigation a:hover {
-  color: #fdb3c2;
-}
-
-@media (max-width: 600px) {
-  .search-bar {
-    flex-direction: column;
-  }
-
-  .search-bar input,
-  .search-bar button {
-    width: 100%;
-    border-radius: 4px;
-  }
-
-  .search-bar button {
-    margin-top: 10px;
-    border-radius: 4px;
-  }
-}
-</style>
