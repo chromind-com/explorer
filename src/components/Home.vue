@@ -72,22 +72,22 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center justify-items-center">
         <div v-for="(partner, index) in partners" :key="index"
-          class="group relative w-full max-w-[300px] p-8 bg-[#3a3750]/30 backdrop-blur-sm rounded-xl hover:bg-[#3a3750]/50 transition-all duration-300">
-          <div class="flex flex-col items-center">
-            <img :src="partner.logo" :alt="partner.name"
-              class="w-full h-32 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" />
-            <span class="mt-6 text-lg font-semibold text-gray-400 group-hover:text-custom-purple transition-colors">
-              {{ partner.name }}
-            </span>
-          </div>
-          <!-- Hover Card with More Info -->
-          <div
-            class="absolute inset-0 p-6 bg-[#3a3750]/95 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center">
-            <p class="text-base text-center text-gray-300">{{ partner.description }}</p>
-            <a :href="partner.link" target="_blank" rel="noopener noreferrer"
-              class="mt-4 px-6 py-2 bg-custom-purple/20 rounded-full text-custom-purple hover:bg-custom-purple/30 transition-all duration-300">
-              Learn More
-            </a>
+          class="w-full max-w-[300px] p-8 bg-[#3a3750]/30 backdrop-blur-sm rounded-xl hover:bg-[#3a3750]/50 transition-all duration-300">
+          <div class="space-y-4">
+            <div class="flex flex-col items-center">
+              <img :src="partner.logo" :alt="partner.name"
+                class="w-full h-32 object-contain mb-4" />
+              <span class="text-lg font-semibold text-custom-purple">
+                {{ partner.name }}
+              </span>
+            </div>
+            <p class="text-sm text-center text-gray-300">{{ partner.description }}</p>
+            <div class="text-center">
+              <a :href="partner.link" target="_blank" rel="noopener noreferrer"
+                class="inline-block px-6 py-2 bg-custom-purple/20 rounded-full text-custom-purple hover:bg-custom-purple/30 transition-all duration-300">
+                Learn More
+              </a>
+            </div>
           </div>
         </div>
       </div>
