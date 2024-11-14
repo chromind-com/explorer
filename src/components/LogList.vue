@@ -109,6 +109,7 @@ export default {
       hasMore: true,
       isLoadingMore: false,
       n_prompts: 10,
+      startTime: this.$route.query.start_time ? parseInt(this.$route.query.start_time) : 0,
     };
   },
   methods: {
@@ -135,7 +136,7 @@ export default {
           name: "get_logs",
           args: {
             address: this.address,
-            start_time: 0,
+            start_time: this.startTime,
             end_time: this.endTime,
             pointer: this.pointer,
             n_prompts: this.n_prompts,  

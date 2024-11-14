@@ -25,8 +25,14 @@
               Github
             </a>
             <a href="https://explorer.chromia.com/mainnet/blockchain/E55CAEA35948B8FA13F9E19B201D5A93BAA664AD57E6CE52AE9022B5024B8083"
-              target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-custom-purple transition-colors">
+              target="_blank" rel="noopener noreferrer"
+              class="text-gray-300 hover:text-custom-purple transition-colors">
               Chromia Explorer
+            </a>
+            <a href="https://docs.google.com/document/d/1R877FezPcjWbWugeNme1W3SPQh2KZDRU9AzhjpLnC00/edit?tab=t.0#heading=h.j421pe3m3x5o"
+              target="_blank" rel="noopener noreferrer"
+              class="text-gray-300 hover:text-custom-purple transition-colors">
+              Documentation
             </a>
           </nav>
         </header>
