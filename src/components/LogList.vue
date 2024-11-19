@@ -165,7 +165,7 @@ export default {
           name: "get_logs",
           args: {
             address: this.address,
-            start_time: 0,
+            start_time: this.startTime,
             end_time: this.endTime,
             pointer: 0,
             n_prompts: this.n_prompts,

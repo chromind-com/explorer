@@ -157,6 +157,12 @@ export default {
           description: "NEEToshi, an AI agent powered by xAI Grok-Beta, Chromia, and Elfa AI, is conducting the first experiment of ChromindScan by simulating using @xai’s model and promoting $CHR.",
           link: "https://twitter.com/AlphaOnChain"
         },
+        {
+          name: "Truth By Aria",
+          logo: "/partners/truth_by_aria.png",
+          description: "",
+          link: "https://x.com/truth_by_aria"
+        }
       ]
     };
   },
